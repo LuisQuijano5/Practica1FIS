@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.aza.vacationpreference"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.aza.vacationpreference"

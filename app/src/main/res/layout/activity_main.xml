@@ -4,15 +4,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Practica FIS"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/guideline_top"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rango de edad"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintBottom_toTopOf="@id/radioGroupEdad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/textViewEdad"
+        app:layout_constraintBottom_toTopOf="@id/textViewActividad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/radio_18_19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18-19" />
+
+        <RadioButton
+            android:id="@+id/radio_20_25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20-25" />
+
+        <RadioButton
+            android:id="@+id/radio_26_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="26-30" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewActividad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actividad favorita en vacaciones"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupEdad"
+        app:layout_constraintBottom_toTopOf="@id/radioGroupActividad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupActividad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textViewActividad"
+        app:layout_constraintBottom_toTopOf="@id/buttonSubmit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/radio_dormir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dormir" />
+
+        <RadioButton
+            android:id="@+id/radio_deporte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hacer deporte" />
+
+        <RadioButton
+            android:id="@+id/radio_videojuegos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Videojuegos" />
+
+        <RadioButton
+            android:id="@+id/radio_amigos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salir con amigos" />
+
+        <RadioButton
+            android:id="@+id/radio_viajar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Viajar" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupActividad"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
