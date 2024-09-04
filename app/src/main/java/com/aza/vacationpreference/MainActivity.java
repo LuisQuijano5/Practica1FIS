@@ -2,17 +2,25 @@ package com.aza.vacationpreference;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private RadioGroup radioGroupEdad, radioGroupActividad;
     private Button buttonSubmit;
     private boolean isClearing = false;
+    private List<List<Integer>> matrix = new ArrayList<>();
+    private int counter;
+    private int counterLimit = 15; //lower it for debugging and testing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         radioGroupEdad = findViewById(R.id.radioGroupEdad);
         radioGroupActividad = findViewById(R.id.radioGroupActividad);
         buttonSubmit = findViewById(R.id.buttonSubmit);
+
+        //Setting counter stuff
+        createMatrix();
+        counter = 0;
 
         radioGroupEdad.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -54,7 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println("Valores enviados - Edad: " + edadValue + ", Actividad: " + actividadValue);
 
-                    Toast.makeText(MainActivity.this, "Tus respuestas fueron enviadas", Toast.LENGTH_SHORT).show();
+                    //Counter stuff
+                    increment(edadValue, actividadValue);
+                    if(counter >= counterLimit){
+                        Intent intent = new Intent(MainActivity.this, Results.class);
+                        intent.putExtra("matrix_key", (Serializable) matrix);
+                        startActivity(intent);
+                    }
 
                     // Limpiar las selecciones
                     isClearing = true;
@@ -83,6 +101,31 @@ public class MainActivity extends AppCompatActivity {
         if (selectedId == R.id.radio_amigos) return 3;
         if (selectedId == R.id.radio_viajar) return 4;
         return -1;
+    }
+
+    private void createMatrix(){
+        for (int i = 0; i < 3; i++) {
+            List<Integer> row = new ArrayList<>();
+            for (int j = 0; j < 5; j++) {
+                row.add(0);
+            }
+            matrix.add(row);
+        }
+    }
+
+    private void increment(int r, int c) {
+        if(counter >= 15){
+            Toast.makeText(MainActivity.this, "Has superado el limite de respuestas", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (r >= 0 && r < matrix.size() && c >= 0 && c < matrix.get(0).size()) {
+            int currentValue = matrix.get(r).get(c);
+            matrix.get(r).set(c, currentValue + 1);
+            counter++;
+            Toast.makeText(MainActivity.this, "Tus respuestas fueron enviadas", Toast.LENGTH_SHORT).show();
+        } else {
+            System.out.println("Invalid row or column"); //in case something happens through development
+        }
     }
 
 }
