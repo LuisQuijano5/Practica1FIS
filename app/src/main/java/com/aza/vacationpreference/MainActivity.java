@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isClearing = false;
     private List<List<Integer>> matrix = new ArrayList<>();
     private int counter;
-    private int counterLimit = 15; //lower it for debugging and testing
+    private int counterLimit = 5; //lower it for debugging and testing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
