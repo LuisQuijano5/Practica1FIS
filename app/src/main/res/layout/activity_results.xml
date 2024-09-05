@@ -16,13 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="RESULTADOS"
+            android:layout_marginBottom="20dp"
             android:textSize="30dp"/>
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/bar_chart"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-
+            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             />
 
